@@ -11,7 +11,7 @@
     "build": "NODE_ENV=dev rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files"
   },
   "keywords": [
-    "MERN-AUTHENTICATION"
+    "social-media"
   ],
   "author": "Deepam Bahre",
   "license": "ISC",

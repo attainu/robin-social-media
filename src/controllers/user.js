@@ -52,6 +52,7 @@ export const register = (req,res) => {
               message: 'invalid username...'
             });
           }
+          
           bcrypt.genSalt(10, (err, salt) => {
             if (err) throw err.message;
             bcrypt.hash(req.body.password, salt, (err, hash) => {
@@ -151,7 +152,7 @@ export const profile = (req,res) => {
 
 //Get Single User
 export const getUser = (req,res, next) => {
-  User.findById(req.params.id, function (err, user) {
+  User.findById(req.params._id, function (err, user) {
     if (err) return next(err);
     res.send(user);
 })
@@ -159,7 +160,7 @@ export const getUser = (req,res, next) => {
 
 //Update Users
 exports.updateUser = (req,res, next) => {
-  User.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, user) {
+  User.findByIdAndUpdate(req.params._id, {$set: req.body}, function (err, user) {
     if (err) return next(err);
     res.send('User udpated.');
 });
@@ -169,7 +170,7 @@ exports.updateUser = (req,res, next) => {
 //Delete Users
 export const deleteUser = (req,res) => {
     User
-    .findOne({ _id: req.params.id })
+    .findOne({ _id: req.params._id })
     .exec()
     .then(user => {
       if (!user) {
@@ -178,7 +179,7 @@ export const deleteUser = (req,res) => {
         });
       }
       User
-        .deleteOne({ _id: req.params.id })
+        .deleteOne({ _id: req.params._id })
         .exec()
         .then(user => {
           return res.status(200).json({success: true});
