@@ -150,7 +150,7 @@ export const profile = (req,res) => {
 };
 
 //Get Single User
-export const getUser = (req,res) => {
+export const getUser = (req,res, next) => {
   User.findById(req.params.id, function (err, user) {
     if (err) return next(err);
     res.send(user);
@@ -158,7 +158,7 @@ export const getUser = (req,res) => {
 }
 
 //Update Users
-exports.updateUser = (req,res,next) => {
+exports.updateUser = (req,res, next) => {
   User.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, user) {
     if (err) return next(err);
     res.send('User udpated.');

@@ -1,7 +1,7 @@
 {
-  "name": "week18-day5-assignment",
+  "name": "social-media",
   "version": "1.0.0",
-  "description": "week18-day5-assignment",
+  "description": "Social Media Project",
   "main": "server.js",
   "scripts": {
     "seed": "NODE_ENV=dev node seeds/seed.js",
