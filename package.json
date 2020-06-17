@@ -1,0 +1,37 @@
+{
+  "name": "week18-day5-assignment",
+  "version": "1.0.0",
+  "description": "week18-day5-assignment",
+  "main": "server.js",
+  "scripts": {
+    "seed": "NODE_ENV=dev node seeds/seed.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=dev babel-watch server",
+    "dev": "NODE_ENV=dev babel-node --presets backend server",
+    "build": "NODE_ENV=dev rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files"
+  },
+  "keywords": [
+    "MERN-AUTHENTICATION"
+  ],
+  "author": "Deepam Bahre",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^2.0.8",
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-handlebars": "^4.0.4",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.3",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
+  }
+}
