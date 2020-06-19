@@ -3,12 +3,13 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-
 //Import User Model
 import User from "../models/userSchema";
 
 //import JWT Token
 import { JWT_KEY } from "../config/keys";
+
+export const UserId = {};
 
 //Get All Users
 export const AllUser = (req,res) => {
@@ -34,28 +35,12 @@ export const AllUser = (req,res) => {
 
 //Users Registration
 export const register = (req,res) => {
-    User
-    .findOne({ email: req.body.email })
-    .exec()
-    .then(user => {
-      if (user) {
-        return res.status(409).json({
-          message: 'invalid email id...'
-        });
-      }
-      User
-        .findOne({ username: req.body.username })
-        .exec()
-        .then(user => {
-          if (user) {
-            return res.status(409).json({
-              message: 'invalid username...'
-            });
-          }
-          
-          bcrypt.genSalt(10, (err, salt) => {
-            if (err) throw err.message;
-            bcrypt.hash(req.body.password, salt, (err, hash) => {
+  User.find({email:req.body.email}).exec().then(user => {
+    if(user.length >= 1){
+        return res.status(409).json({message:"user already exist can't register"});
+    } else {
+    }
+            bcrypt.hash(req.body.password, 10, (err, hash) => {
               if (err) throw err.message;
               //Let Save User
               let newUser = new User({
@@ -69,29 +54,18 @@ export const register = (req,res) => {
                 .save()
                 .then(user => {
                   //return res.status(201).json(user);
-                  return res.status(201).json(user).render('login', {
+                  return res.status(201).json(user, {
                     message: 'User already registered.'
                 });
                 })
                 .catch(err => {
-                  return res.status(500).json({
-                    error: err.message
-                  });
+                  return res.status(500).json(err);
                 });
             });
-          });
         })
         .catch(err => {
-          return res.status(500).json({
-            error: err.message
-          });
+          return res.status(500).json(err);
         });
-    })
-    .catch(err => {
-      return res.status(500).json({
-        error: err.message
-      });
-    });
 };
 
 //Users Login
@@ -120,8 +94,10 @@ export const login = (req,res) => {
               name: user.name,
               email: user.email,
               username: user.username,
-              id: user._id
+              id: user._id,
+              $push: {id :UserId}
             }
+            
           });
         } else {
           return res.status(409).json({
@@ -162,7 +138,7 @@ export const getUser = (req,res, next) => {
 exports.updateUser = (req,res, next) => {
   User.findByIdAndUpdate(req.params._id, {$set: req.body}, function (err, user) {
     if (err) return next(err);
-    res.send('User udpated.');
+    res.send('User updated.');
 });
 };
 
@@ -200,5 +176,20 @@ export const deleteUser = (req,res) => {
 //User logout
 export const logout = (req,res) => {
     req.logout();
-    res.redirect('/login');
+    res.json({message: "logout successfully"});
 }
+
+//User logout
+export const searchUserByName = (req,res) => {
+
+User.findOne({username: new RegExp('^'+req.params.username+'$', "i")}, function (err, user) {
+  if (err) return next(err);
+  res.send(user);
+})
+ 
+}
+
+
+
+
+

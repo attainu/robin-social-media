@@ -16,9 +16,12 @@
   "author": "Deepam Bahre",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-watch": "^2.0.8",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.6",
+    "babel-polyfill": "^6.26.0",
+    "babel-watch": "^7.0.0",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
@@ -26,12 +29,16 @@
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.5",
-    "express": "^4.16.4",
-    "express-handlebars": "^4.0.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-es6-template-engine": "^2.2.3",
+    "express-layout": "^0.1.0",
+    "http-errors": "^1.7.3",
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.4.3",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "socket.io": "^2.3.0"
   }
 }

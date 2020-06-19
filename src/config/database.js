@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
+import dotenv from 'dotenv';
+dotenv.config();
 
+/*
 //Import MONGOUI
 import { MONGO_UI } from "./keys";
 
@@ -7,8 +10,7 @@ import { MONGO_UI } from "./keys";
 mongoose.connect(MONGO_UI, {
   useNewUrlParser: true,
   useCreateIndex: true,
-  useUnifiedTopology: true,
-  returnOriginal:false
+  useUnifiedTopology: true
 });
 mongoose.Promise = global.Promise;
 let connection = mongoose.connection;
@@ -20,3 +22,16 @@ connection.on('error', (err) => {
 
 //Check for connections
 connection.once('open', () => console.log(`connecting to mongodb...`));
+
+*/
+
+mongoose.connect(
+  process.env.MONGODB_URI,
+  { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
+)
+.then(() => {
+  console.log("database connected successfully");
+  })
+.catch((err) => {
+  console.log(err);
+});

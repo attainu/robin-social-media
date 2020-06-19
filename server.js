@@ -1,37 +1,19 @@
 import express from "express";
-import { createServer } from "http";
-import logger from "morgan";
-import exphbs from 'express-handlebars';
+import morgan from "morgan";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import passport from "passport";
 import cors from "cors";
-import path from 'path';
-
 const app = express();
-const server = createServer(app);
+const server = app.listen(5000)
+const io = require('socket.io').listen(server);
 
-//app settings
-app.set('views', path.join(__dirname, './src/views'))
-    .set('view engine', 'hbs')
-    .set('view cache', true)
-
-//app view engine
-app.engine('hbs', exphbs({
-    extname: '.hbs',
-    defaultLayout: 'layout',
-    layoutsDir: app.get('views')
-}));
-app.use(express.static(path.join(__dirname, 'public')));
-
-// SET THE STATIC FOLDER FOR PUBLIC FILES
-app.use(express.static(path.join(__dirname, 'src/public')));
 
 //Import Passport Config
 import passportConfig from "./src/config/passport";
 
 //Setup Http-Logger Middleare
-app.use(logger('dev'));
+app.use(morgan('dev'));
 
 //Setup CORS Error Handler
 app.use(cors());
@@ -56,7 +38,7 @@ passportConfig(passport);
 import "./src/config/database";
 
 //Route for User
-app.use('/', userRoute);
+app.use('/user', userRoute);
 
 //Route for Index
 app.use('/', indexRoute);
@@ -64,5 +46,29 @@ app.use('/', indexRoute);
 //Route for Post
 app.use('/post', postRoute);
 
-const port = process.env.PORT || 5000;
-server.listen(port, () => console.log(`server started running on port ${port}!!`));
+//Error hndleres
+app.use((req,res,next) => {
+    const error = new Error('Not Found');
+    error.status=404;
+    next(error);
+})
+//Error handler for DAtabae
+app.use((error,req,res,next) => {
+    res.status(error.status || 500);
+    res.json({
+        error:{
+            message:error.message
+        }
+    })
+})
+
+
+
+// START THE SERVER
+io.on('connection', function (socket) {
+    console.log('Server started');
+    socket.emit('social', { social: 'media' });
+    socket.on('social-media', function (data) {
+        console.log(data);
+    });
+});

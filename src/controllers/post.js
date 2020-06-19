@@ -73,7 +73,7 @@ export const AllPost = (req,res) => {
     });
   }
 
-  export const getPost = (req,res) => {
+  export const getPostByID = (req,res) => {
     Post.find({_id:req.params.id}, function (err, post) {
       if (err) res.send(err);
       res.json(post);
