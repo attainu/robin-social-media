@@ -3,11 +3,12 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+
 //Import User Model
 import User from "../models/userSchema";
 
 //import JWT Token
-import { JWT_KEY } from "../config/keys";
+const JWT_KEY = process.env.JWT_KEY;
 
 export const UserId = {};
 
@@ -35,12 +36,29 @@ export const AllUser = (req,res) => {
 
 //Users Registration
 export const register = (req,res) => {
-  User.find({email:req.body.email}).exec().then(user => {
-    if(user.length >= 1){
-        return res.status(409).json({message:"user already exist can't register"});
-    } else {
-    }
-            bcrypt.hash(req.body.password, 10, (err, hash) => {
+
+    User
+    .findOne({ email: req.body.email })
+    .exec()
+    .then(user => {
+      if (user) {
+        return res.status(409).json({
+          message: 'User Already Exist'
+        });
+      }
+      User
+        .findOne({ username: req.body.username })
+        .exec()
+        .then(user => {
+          if (user) {
+            return res.status(409).json({
+              message: 'invalid username...'
+            });
+          }
+
+          bcrypt.genSalt(10, (err, salt) => {
+            if (err) throw err.message;
+            bcrypt.hash(req.body.password, salt, (err, hash) => {
               if (err) throw err.message;
               //Let Save User
               let newUser = new User({
@@ -59,17 +77,29 @@ export const register = (req,res) => {
                 });
                 })
                 .catch(err => {
-                  return res.status(500).json(err);
+                  return res.status(500).json({
+                    error: err.message
+                  });
                 });
             });
+          });
         })
         .catch(err => {
-          return res.status(500).json(err);
+          return res.status(500).json({
+            error: err.message
+          });
         });
+    })
+    .catch(err => {
+      return res.status(500).json({
+        error: err.message
+      });
+    });
 };
 
 //Users Login
 export const login = (req,res) => {
+
     User
     .findOne({ username: req.body.username })
     .exec()
@@ -97,7 +127,6 @@ export const login = (req,res) => {
               id: user._id,
               $push: {id :UserId}
             }
-            
           });
         } else {
           return res.status(409).json({
@@ -188,8 +217,3 @@ User.findOne({username: new RegExp('^'+req.params.username+'$', "i")}, function 
 })
  
 }
-
-
-
-
-

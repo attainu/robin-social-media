@@ -3,9 +3,10 @@ import { ExtractJwt } from "passport-jwt";
 
 //Import User Model
 import User from "../models/userSchema";
+const dotenv = require('dotenv')
+dotenv.config();
 
-//Import Jwt Key
-import { JWT_KEY } from "../config/keys";
+const JWT_KEY = process.env.JWT_KEY;
 
 export default (passport) => {
   let opts = {};

@@ -18,9 +18,6 @@ Delete a User By Id (GET)        : http://localhost:5000/user/:id
 
 Search a User By username (POST) : http://localhost:5000/user/:username
 
-
-
-
 #Post routes:-
 
 Create new Post (GET)            : http://localhost:5000/post/AddPost

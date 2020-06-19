@@ -2,12 +2,29 @@ import express from "express";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import exphbs from 'express-handlebars';
 import passport from "passport";
 import cors from "cors";
 const app = express();
-const server = app.listen(5000)
+const server = app.listen(5000, () => console.log(`server started running on port 5000`))
 const io = require('socket.io').listen(server);
+import path from 'path';
 
+const dotenv = require('dotenv')
+dotenv.config();
+
+//app settings
+app.set('views', path.join(__dirname, './src/views'))
+    .set('view engine', 'hbs')
+    .set('view cache', true)
+
+//app view engine
+app.engine('hbs', exphbs({
+    extname: '.hbs',
+    defaultLayout: 'layout',
+    layoutsDir: app.get('views')
+}));
+app.use(express.static(path.join(__dirname, './src/public')));
 
 //Import Passport Config
 import passportConfig from "./src/config/passport";
@@ -46,13 +63,14 @@ app.use('/', indexRoute);
 //Route for Post
 app.use('/post', postRoute);
 
-//Error hndleres
+
+//Error handlers
 app.use((req,res,next) => {
     const error = new Error('Not Found');
     error.status=404;
     next(error);
 })
-//Error handler for DAtabae
+//Error handler for Database
 app.use((error,req,res,next) => {
     res.status(error.status || 500);
     res.json({
@@ -61,7 +79,6 @@ app.use((error,req,res,next) => {
         }
     })
 })
-
 
 
 // START THE SERVER
