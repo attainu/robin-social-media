@@ -4,11 +4,10 @@
   "description": "Social Media Project",
   "main": "server.js",
   "scripts": {
-    "seed": "NODE_ENV=dev node seeds/seed.js",
     "test": "jest",
     "start": "NODE_ENV=dev babel-watch server",
-    "dev": "NODE_ENV=dev babel-node --presets backend server",
-    "build": "NODE_ENV=dev rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files"
+    "build": "rimraf dist/ && babel ./ --out-dir dist",
+    "watch:dev": "nodemon"
   },
   "keywords": [
     "social-media"
