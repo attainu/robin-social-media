@@ -6,9 +6,11 @@ import exphbs from 'express-handlebars';
 import passport from "passport";
 import cors from "cors";
 const app = express();
-const server = app.listen(5000, () => console.log(`server started running on port 5000`))
-const io = require('socket.io').listen(server);
 import path from 'path';
+import "babel-polyfill";
+import 'regenerator-runtime';
+
+const port = process.env.PORT || 5000
 
 const dotenv = require('dotenv')
 dotenv.config();
@@ -80,12 +82,8 @@ app.use((error,req,res,next) => {
     })
 })
 
+app.listen(port, () => {
+    console.log('Server is up on port ' + port)
+})
 
-// START THE SERVER
-io.on('connection', function (socket) {
-    console.log('Server started');
-    socket.emit('social', { social: 'media' });
-    socket.on('social-media', function (data) {
-        console.log(data);
-    });
-});
+export default app;
