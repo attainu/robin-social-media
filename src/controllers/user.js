@@ -2,7 +2,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-
+import {validationResult} from 'express-validator';
 
 //Import User Model
 import User from "../models/userSchema";
@@ -35,7 +35,16 @@ export const AllUser = (req,res) => {
 };
 
 //Users Registration
-export const register = (req,res) => {
+export const register =  (req,res) => {
+
+    const errors = validationResult(req);
+    console.log(req.body);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).jsonp(errors.array());
+    } else {
+      res.send({});
+    }
 
     User
     .findOne({ email: req.body.email })

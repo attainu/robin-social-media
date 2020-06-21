@@ -2,6 +2,7 @@
 //Import User Model
 import Post from "../models/postSchema";
 import mongoose from "mongoose";
+import {validationResult} from 'express-validator';
 export const AllPost = (req,res) => {
   Post
   .find()
@@ -23,6 +24,16 @@ export const AllPost = (req,res) => {
 };
 
   export const AddPost = (req,res) => {
+
+    const errors = validationResult(req);
+    console.log(req.body);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).jsonp(errors.array());
+    } else {
+      res.send({});
+    }
+
     Post
     .findOne({ description: req.body.description })
     .exec()
