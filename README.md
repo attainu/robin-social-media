@@ -1,6 +1,6 @@
 # Social-Post
 
-[![Social-Post.png](https://i.postimg.cc/G358km5m/social-post-banner.jpg)](https://postimg.cc/Cdbx0S03)
+[![Social-Post.png](https://i.postimg.cc/QtLSxZ2X/social-post-banner.png)](https://postimg.cc/DWg1BHfD)
 
 ## User routes:-
 
