@@ -43,8 +43,8 @@ export const register =  (req,res) => {
     if (!errors.isEmpty()) {
       return res.status(422).jsonp(errors.array());
     } else {
-      res.send({});
-    }
+
+    
 
     User
     .findOne({ email: req.body.email })
@@ -104,6 +104,7 @@ export const register =  (req,res) => {
         error: err.message
       });
     });
+  }
 };
 
 //Users Login
@@ -217,7 +218,7 @@ export const logout = (req,res) => {
     res.json({message: "logout successfully"});
 }
 
-//User logout
+//Search User By Username
 export const searchUserByName = (req,res) => {
 
 User.findOne({username: new RegExp('^'+req.params.username+'$', "i")}, function (err, user) {

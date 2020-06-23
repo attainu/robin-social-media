@@ -41,6 +41,7 @@ app.use(cors());
 import userRoute from "./src/routes/user";
 import indexRoute from "./src/routes/index";
 import postRoute from "./src/routes/post";
+import commentRoute from "./src/routes/comment";
 
 //Setup Body-Parser & Cookie-Parser Middlewares
 app.use(bodyParser.urlencoded({extended: false}));
@@ -65,6 +66,8 @@ app.use('/', indexRoute);
 //Route for Post
 app.use('/post', postRoute);
 
+//Comment for Post
+app.use('/comment', commentRoute);
 
 //Error handlers
 app.use((req,res,next) => {
