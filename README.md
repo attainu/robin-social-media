@@ -1,4 +1,4 @@
-# [Social-Post]
+# Social-Post
 
 #User routes:-
 
