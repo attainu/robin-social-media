@@ -1,6 +1,6 @@
 # Social-Post
 
-![Social Post]([/images/logo.png](https://docs.google.com/presentation/d/1N2LB0Q2TKt2YQyei8v2cc8oF6OYhf4K-4Pyp0VJgJi8/edit?usp=sharing))
+[![Social-Post.png](https://docs.google.com/presentation/d/1N2LB0Q2TKt2YQyei8v2cc8oF6OYhf4K-4Pyp0VJgJi8/edit?usp=sharing)] (https://docs.google.com/presentation/d/1N2LB0Q2TKt2YQyei8v2cc8oF6OYhf4K-4Pyp0VJgJi8/edit?usp=sharing)
 
 ## User routes:-
 
