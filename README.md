@@ -32,14 +32,14 @@
 
 5. Delete a Post By Id (GET)            : http://localhost:5000/post/:id
 
-## Comment on a particular post routes:-
+## Comment routes:-
 
-1. Create new Comment (POST)            : http://localhost:5000/post/AddPost
+1. Create new Comment (POST)            : http://localhost:5000/comment/AddComment/:PostId
 
-2. Get All Comments (GET)               : http://localhost:5000/post/AllPost
+2. Get All Comments (GET)               : http://localhost:5000/comment/AllComment
 
-3. Get Single Comment By Id (GET)       : http://localhost:5000/post/:id
+3. Get Single Comment By Id (GET)       : http://localhost:5000/comment/:id
 
-4. Update a Comment By Id (GET)         : http://localhost:5000/post/:id
+4. Update a Comment By Id (GET)         : http://localhost:5000/comment/:id
 
-5. Delete a Comment By Id (GET)         : http://localhost:5000/post/:id
+5. Delete a Comment By Id (GET)         : http://localhost:5000/comment/:id
