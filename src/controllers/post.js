@@ -31,8 +31,8 @@ export const AllPost = (req,res) => {
     if (!errors.isEmpty()) {
       return res.status(422).jsonp(errors.array());
     } else {
-      
-    
+
+
 
     Post
     .findOne({ description: req.body.description })
@@ -41,6 +41,7 @@ export const AllPost = (req,res) => {
       let newPost = new Post({
       _id: new mongoose.Types.ObjectId(),
       description: req.body.description,
+      addedBy:req.user.username
       });
       return newPost
         .save()

@@ -9,6 +9,9 @@ let postSchema = new Schema({
     type: String,
     required: [true, 'description is required...']
   },
+  addedBy:{
+    type: mongoose.Schema.Types.String,
+  },
   date: {
     type: Date,
     default: Date.now
