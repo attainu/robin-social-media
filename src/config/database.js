@@ -5,7 +5,7 @@ dotenv.config();
 /*
 mongoose.connect(
   process.env.MONGODBlocal,
-  { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+  { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, , useFindAndModify: false })
 .then(() => {
   console.log("database connected successfully");
 })
@@ -16,7 +16,7 @@ mongoose.connect(
 
 mongoose.connect(
         process.env.MONGODB_URI,
-        { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+        { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(() => {
         console.log("database connected successfully");
     })

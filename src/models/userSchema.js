@@ -28,7 +28,10 @@ let userSchema = new Schema({
     type: String,
     required: [true, 'password is required...']
   },
-
+  profile: {
+    type: String,
+    default:"https://i.postimg.cc/mgbV8W88/profile.png"
+  },
   date: {
     type: Date,
     default: Date.now

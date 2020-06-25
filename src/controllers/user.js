@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import {validationResult} from 'express-validator';
 
+
 //Import User Model
 import User from "../models/userSchema";
 
@@ -44,66 +45,41 @@ export const register =  (req,res) => {
       return res.status(422).jsonp(errors.array());
     } else {
 
-    
 
-    User
-    .findOne({ email: req.body.email })
-    .exec()
-    .then(user => {
-      if (user) {
-        return res.status(409).json({
-          message: 'User Already Exist'
-        });
-      }
-      User
-        .findOne({ username: req.body.username })
-        .exec()
-        .then(user => {
-          if (user) {
-            return res.status(409).json({
-              message: 'invalid username...'
-            });
-          }
+      //make sure that user not exist already in database
+      User.find({email:req.body.email}).exec().then(user => {
+        if(user.length >= 1){
+            return res.status(409).json({message:"user already exist cant register"});
+        } else {
+            bcrypt.hash(req.body.password,10,(err,hash) => {
+                if(err) {
+                    return res.status(500).json({error:err});
+                } else {
 
-          bcrypt.genSalt(10, (err, salt) => {
-            if (err) throw err.message;
-            bcrypt.hash(req.body.password, salt, (err, hash) => {
-              if (err) throw err.message;
-              //Let Save User
-              let newUser = new User({
-                _id: new mongoose.Types.ObjectId(),
-                name: req.body.name,
-                email: req.body.email,
-                username: req.body.username,
-                password: hash
-              });
-              return newUser
-                .save()
-                .then(user => {
-                  //return res.status(201).json(user);
-                  return res.status(201).json(user, {
-                    message: 'User already registered.'
-                });
-                })
-                .catch(err => {
-                  return res.status(500).json({
-                    error: err.message
-                  });
-                });
-            });
-          });
-        })
-        .catch(err => {
-          return res.status(500).json({
-            error: err.message
-          });
-        });
-    })
-    .catch(err => {
-      return res.status(500).json({
-        error: err.message
-      });
-    });
+                    let newUser = new User({
+                        _id: new mongoose.Types.ObjectId(),
+                        name:req.body.name,
+                        email:req.body.email,
+                        username:req.body.username,
+                        password: hash
+                    });
+                        newUser.save().then(response => {
+                            console.log(response);
+                            return res.status(201).json({message:"User Added Successfully"});
+
+                        }).catch(err => {
+                            console.log(err);
+                            res.status(500).json({error:err});
+                        });
+
+                }
+            })
+        }
+    }).catch(err => {
+      console.log(err);
+      res.status(500).json({error:err});
+  });
+
   }
 };
 
@@ -175,7 +151,7 @@ export const getUser = (req,res, next) => {
 
 //Update Users
 exports.updateUser = (req,res, next) => {
-  User.findByIdAndUpdate(req.params._id, {$set: req.body}, function (err, user) {
+  User.findOneAndUpdate(req.params._id, {$set: req.body}, {new: true, useFindAndModify: false}, function (err, user) {
     if (err) return next(err);
     res.send('User updated.');
 });
@@ -184,38 +160,19 @@ exports.updateUser = (req,res, next) => {
 
 //Delete Users
 export const deleteUser = (req,res) => {
-    User
-    .findOne({ _id: req.params._id })
-    .exec()
-    .then(user => {
-      if (!user) {
-        return res.status(409).json({
-          message: `user not found...`
-        });
-      }
-      User
-        .deleteOne({ _id: req.params._id })
-        .exec()
-        .then(user => {
-          return res.status(200).json({success: true});
-        })
-        .catch(err => {
-          return res.status(500).json({
-            error: err.message
-          });
-        });
-    })
-    .catch(err => {
-      return res.status(500).json({
-        error: err.message
-      });
-    });
+  User.findByIdAndRemove(req.params.id, (err,user) => {
+    if(err){
+    return res.json({'success':false,'message':'Some Error'});
+    }
+
+    return res.json({'success':true,message : 'User deleted successfully'});
+  })
 }
 
 //User logout
 export const logout = (req,res) => {
     req.logout();
-    res.json({message: "logout successfully"});
+    res.status(200).json({message: "logout successfully"});
 }
 
 //Search User By Username
@@ -225,5 +182,6 @@ User.findOne({username: new RegExp('^'+req.params.username+'$', "i")}, function 
   if (err) return next(err);
   res.send(user);
 })
- 
+
 }
+
