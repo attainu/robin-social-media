@@ -143,10 +143,17 @@ export const profile = (req,res) => {
 
 //Get Single User
 export const getUser = (req,res, next) => {
-  User.findById(req.params._id, function (err, user) {
-    if (err) return next(err);
-    res.send(user);
-})
+  User.find({_id:req.params.id}).exec((err,user) => {
+    if(err){
+    return res.json({'success':false,'message':'Some Error'});
+    }
+    if(user.length){
+      return res.json({'success':true,'message':'User fetched by id successfully',user});
+    }
+    else{
+      return res.json({'success':false,'message':'User with the given id not found'});
+    }
+  })
 }
 
 //Update Users
