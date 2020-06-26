@@ -58,32 +58,10 @@ export const AllPost = (req,res) => {
 
 
   export const updatePost = (req,res) => {
-    Post
-    .findOne({ _id: req.params.id })
-    .exec()
-    .then(post => {
-      if (!post) {
-        return res.status(409).json({
-          message: `post not found...`
-        });
-      }
-      Post
-        .update({ description: req.body.description })
-        .exec()
-        .then(post => {
-          return res.status(200).json({success: true});
-        })
-        .catch(err => {
-          return res.status(500).json({
-            error: err.message
-          });
-        });
-    })
-    .catch(err => {
-      return res.status(500).json({
-        error: err.message
-      });
-    });
+    Post.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+      if (err) return next(err);
+      res.send('Post updated.');
+  });
   }
 
   export const getPostByID = (req,res) => {

@@ -74,42 +74,16 @@ export const AllComment = (req,res) => {
       });
     });
 
-
-
-
-
       };
 
     };
 
 
   export const updateComment = (req,res) => {
-    Comment
-    .findOne({ _id: req.params.id })
-    .exec()
-    .then(comment => {
-      if (!comment) {
-        return res.status(409).json({
-          message: `comment not found...`
-        });
-      }
-      Comment
-        .update({ opinion: req.body.opinion })
-        .exec()
-        .then(comment => {
-          return res.status(200).json({success: true});
-        })
-        .catch(err => {
-          return res.status(500).json({
-            error: err.message
-          });
-        });
-    })
-    .catch(err => {
-      return res.status(500).json({
-        error: err.message
-      });
-    });
+    Comment.findByIdAndUpdate(req.params.id, req.body, function (err, comment) {
+      if (err) return next(err);
+      res.send('Comment updated.');
+  });
   }
 
   export const getCommentByID = (req,res) => {

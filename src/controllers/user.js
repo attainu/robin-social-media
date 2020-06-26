@@ -158,7 +158,7 @@ export const getUser = (req,res, next) => {
 
 //Update Users
 exports.updateUser = (req,res, next) => {
-  User.findOneAndUpdate(req.params._id, {$set: req.body}, {new: true, useFindAndModify: false}, function (err, user) {
+  User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
     if (err) return next(err);
     res.send('User updated.');
 });
