@@ -10,10 +10,10 @@ import path from 'path';
 //Import Passport Config
 import passportConfig from "./src/config/passport.js";
 //Import Routes
-import userRoute from "./src/routes/user";
-import indexRoute from "./src/routes/index";
-import postRoute from "./src/routes/post";
-import commentRoute from "./src/routes/comment";
+import userRoute from "./src/routes/user.js";
+import indexRoute from "./src/routes/index.js";
+import postRoute from "./src/routes/post.js";
+import commentRoute from "./src/routes/comment.js";
 
 
 const port = process.env.PORT || 5000
