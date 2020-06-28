@@ -6,7 +6,7 @@ import {validationResult} from 'express-validator';
 
 
 //Import User Model
-import User from "../models/userSchema";
+import User from "../models/userSchema.js";
 
 //import JWT Token
 const JWT_KEY = process.env.JWT_KEY;

@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import * as commentController from '../controllers/comment';
+import * as commentController from '../controllers/comment.js';
 import passport from "passport";
 import {body} from 'express-validator';
 
