@@ -6,7 +6,7 @@ const ExtractJWT = passportJWT.ExtractJwt;
 
 //Import User Model
 import User from "../models/userSchema.js";
-const dotenv = require('dotenv')
+import dotenv from 'dotenv';
 dotenv.config();
 
 const JWT_KEY = process.env.JWT_KEY;

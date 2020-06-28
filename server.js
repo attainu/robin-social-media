@@ -16,11 +16,11 @@ import postRoute from "./src/routes/post.js";
 import commentRoute from "./src/routes/comment.js";
 //Import MongoDB Connection
 import "./src/config/database.js";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const port = process.env.PORT || 5000
 
-const dotenv = require('dotenv')
-dotenv.config();
 
 //app settings
 app.set('views', path.join(__dirname, './src/views'))
