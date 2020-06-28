@@ -7,8 +7,7 @@ import passport from "passport";
 import cors from "cors";
 const app = express();
 import path from 'path';
-import "babel-polyfill";
-import 'regenerator-runtime';
+
 
 const port = process.env.PORT || 5000
 
