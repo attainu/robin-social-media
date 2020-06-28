@@ -2,7 +2,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import {validationResult} from 'express-validator';
+const validationResult = require('express-validator');
 
 
 //Import User Model

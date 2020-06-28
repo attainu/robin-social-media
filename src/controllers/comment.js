@@ -2,7 +2,7 @@
 //Import User Model
 import Comment from "../models/commentSchema.js";
 import mongoose from "mongoose";
-import {validationResult} from 'express-validator';
+const validationResult = require('express-validator');
 import Post from "../models/postSchema.js";
 export const AllComment = (req,res) => {
   Comment
