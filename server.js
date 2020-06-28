@@ -14,7 +14,8 @@ import userRoute from "./src/routes/user.js";
 import indexRoute from "./src/routes/index.js";
 import postRoute from "./src/routes/post.js";
 import commentRoute from "./src/routes/comment.js";
-
+//Import MongoDB Connection
+import "./src/config/database.js";
 
 const port = process.env.PORT || 5000
 
@@ -50,9 +51,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passportConfig(passport);
-
-//Import MongoDB Connection
-import "./src/config/database";
 
 //Route for User
 app.use('/user', userRoute);
