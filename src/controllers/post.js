@@ -6,6 +6,7 @@ import {validationResult} from 'express-validator';
 export const AllPost = (req,res) => {
   Post
   .find()
+  .populate('user')
   .sort({date:-1})
   .exec()
   .then(postsData => {
@@ -41,7 +42,7 @@ export const AllPost = (req,res) => {
       let newPost = new Post({
       _id: new mongoose.Types.ObjectId(),
       description: req.body.description,
-      addedBy:req.user.username
+      addedBy:req.user.id
       });
       return newPost
         .save()
