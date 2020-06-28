@@ -2,8 +2,7 @@ import express from "express";
 const router = express.Router();
 import * as userController from '../controllers/user.js';
 import passport from "passport";
-//import {body} from 'express-validator';
-const { body } = require('express-validator');
+import {body} from 'express-validator';
 
 router.route('/AllUser').get(userController.AllUser)
 router.get('/register', (req, res) => {
