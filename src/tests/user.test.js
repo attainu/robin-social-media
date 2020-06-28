@@ -1,5 +1,5 @@
-import User from "../routes/user";
-import Post from "../routes/post";
+import User from "../routes/user.js";
+import Post from "../routes/post.js";
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import request from "supertest";
