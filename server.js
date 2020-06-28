@@ -9,6 +9,12 @@ const app = express();
 import path from 'path';
 //Import Passport Config
 import passportConfig from "./src/config/passport.js";
+//Import Routes
+import userRoute from "./src/routes/user";
+import indexRoute from "./src/routes/index";
+import postRoute from "./src/routes/post";
+import commentRoute from "./src/routes/comment";
+
 
 const port = process.env.PORT || 5000
 
@@ -33,12 +39,6 @@ app.use(morgan('dev'));
 
 //Setup CORS Error Handler
 app.use(cors());
-
-//Import Routes
-import userRoute from "./src/routes/user";
-import indexRoute from "./src/routes/index";
-import postRoute from "./src/routes/post";
-import commentRoute from "./src/routes/comment";
 
 //Setup Body-Parser & Cookie-Parser Middlewares
 app.use(bodyParser.urlencoded({extended: false}));
