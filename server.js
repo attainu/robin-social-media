@@ -7,7 +7,8 @@ import passport from "passport";
 import cors from "cors";
 const app = express();
 import path from 'path';
-
+//Import Passport Config
+import passportConfig from "./src/config/passport.js";
 
 const port = process.env.PORT || 5000
 
@@ -26,9 +27,6 @@ app.engine('hbs', exphbs({
     layoutsDir: app.get('views')
 }));
 app.use(express.static(path.join(__dirname, './src/public')));
-
-//Import Passport Config
-import passportConfig from "./src/config/passport";
 
 //Setup Http-Logger Middleare
 app.use(morgan('dev'));
