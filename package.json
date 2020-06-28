@@ -10,8 +10,7 @@
   "scripts": {
     "test": "jest",
     "start": "babel-watch server",
-    "build": "rimraf dist/ && babel ./ --out-dir dist",
-    "watch:dev": "nodemon"
+    "watch:dev": "nodemon --exec babel-node server"
   },
   "keywords": [
     "social-media"
