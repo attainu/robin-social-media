@@ -2,7 +2,8 @@ import express from "express";
 const router = express.Router();
 import * as commentController from '../controllers/comment.js';
 import passport from "passport";
-import {body} from 'express-validator';
+//import {body} from 'express-validator';
+const { body } = require('express-validator');
 
 router.route('/AllComment').get(passport.authenticate('jwt',{session:false}),commentController.AllComment)
 router.route('/AddComment/:PostId').post(passport.authenticate('jwt',{session:false}),[
