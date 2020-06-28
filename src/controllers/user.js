@@ -2,7 +2,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-//import validationResult from 'express-validator';
 
 //Import User Model
 import User from "../models/userSchema.js";

@@ -2,11 +2,11 @@ import express from "express";
 const router = express.Router();
 import * as commentController from '../controllers/comment.js';
 import passport from "passport";
-import {check, validationResult} from 'express-validator/check';
+import {body, validationResult} from 'express-validator';
 
 router.route('/AllComment').get(passport.authenticate('jwt',{session:false}),commentController.AllComment)
 router.route('/AddComment/:PostId').post(passport.authenticate('jwt',{session:false}),[
-  check('opinion').exists().isLength({min: 10}).trim().escape().withMessage('Opinion must have more than 10 characters')
+  body('opinion').exists().isLength({min: 10}).trim().escape().withMessage('Opinion must have more than 10 characters')
   ],commentController.AddComment)
 
 

@@ -2,11 +2,11 @@ import express from "express";
 const router = express.Router();
 import * as postController from '../controllers/post.js';
 import passport from "passport";
-import {check, validationResult} from 'express-validator/check';
+import {body, validationResult} from 'express-validator';
 
 router.route('/AllPost').get(passport.authenticate('jwt',{session:false}),postController.AllPost)
 router.route('/AddPost').post(passport.authenticate('jwt',{session:false}),[
-  check('description').exists().isLength({min: 10}).trim().escape().withMessage('Description must have more than 10 characters')
+  body('description').exists().isLength({min: 10}).trim().escape().withMessage('Description must have more than 10 characters')
   ],postController.AddPost)
 
 

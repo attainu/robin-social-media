@@ -18,7 +18,6 @@ import commentRoute from "./src/routes/comment.js";
 import "./src/config/database.js";
 import dotenv from 'dotenv';
 dotenv.config();
-
 const port = process.env.PORT || 5000
 
 
