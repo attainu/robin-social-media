@@ -1,5 +1,8 @@
-import { Strategy } from "passport-jwt";
-import { ExtractJwt } from "passport-jwt";
+
+const passportJWT = require("passport-jwt");
+const JWTStrategy   = passportJWT.Strategy;
+const ExtractJWT = passportJWT.ExtractJwt;
+
 
 //Import User Model
 import User from "../models/userSchema.js";
@@ -10,10 +13,10 @@ const JWT_KEY = process.env.JWT_KEY;
 
 export default (passport) => {
   let opts = {};
-  opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+  opts.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
   opts.secretOrKey = JWT_KEY;
 
-  passport.use(new Strategy(opts, (jwt_payload, done) => {
+  passport.use(new JWTStrategy(opts, (jwt_payload, done) => {
     let id = jwt_payload.user._id;
     User
       .findOne({ _id: id })
