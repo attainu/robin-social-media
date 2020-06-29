@@ -5,6 +5,7 @@
     "node": "12.x",
     "npm": "6.x"
   },
+  "type": "module",
   "description": "Social Media Project",
   "main": "server.js",
   "scripts": {
@@ -51,6 +52,5 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "validator": "^13.1.1"
-  },
-  "type": "module"
+  }
 }

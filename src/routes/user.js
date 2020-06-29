@@ -2,14 +2,18 @@ import express from "express";
 const router = express.Router();
 import * as userController from '../controllers/user.js';
 import passport from "passport";
-//import {body, validationResult} from 'express-validator';
-import { check, validationResult } from 'express-validator'
+//import { check } from 'express-validator'
+import checkAPIs from 'express-validator';
+const { check } = checkAPIs;
+
+
+
 router.route('/AllUser').get(userController.AllUser)
 router.get('/register', (req, res) => {
     res.render('register');
 });
 router.route('/register').post([
-    check('name').exists().isLength({min: 2}).trim().escape().withMessage('Name must have more than 2 characters'),
+    check('name').exists().isLength({min: 5}).trim().escape().withMessage('Name must have more than 5 characters'),
     check('email', 'Your email is not valid').not().isEmpty().isEmail().normalizeEmail(),
     check('username').exists().isLength({min: 5}).trim().escape().withMessage('Username must have more than 5 characters'),
     check('password', 'Your password must be at least 3 characters').not().isEmpty().isLength({min: 3})

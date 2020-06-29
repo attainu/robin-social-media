@@ -2,6 +2,11 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+//import { validationResult } from 'express-validator'
+import checkAPIs from 'express-validator';
+const { validationResult } = checkAPIs;
+
+
 
 //Import User Model
 import User from "../models/userSchema.js";
@@ -155,7 +160,7 @@ export const getUser = (req,res, next) => {
 }
 
 //Update Users
-exports.updateUser = (req,res, next) => {
+export const updateUser = (req,res, next) => {
   User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
     if (err) return next(err);
     res.send('User updated.');
