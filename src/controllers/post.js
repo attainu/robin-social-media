@@ -2,10 +2,7 @@
 //Import User Model
 import Post from "../models/postSchema.js";
 import mongoose from "mongoose";
-//import { validationResult } from 'express-validator'
-import checkAPIs from 'express-validator';
-const { validationResult } = checkAPIs;
-
+import { validationResult } from 'express-validator'
 
 export const AllPost = (req,res) => {
   Post

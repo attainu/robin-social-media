@@ -2,10 +2,7 @@ import express from "express";
 const router = express.Router();
 import * as postController from '../controllers/post.js';
 import passport from "passport";
-//import { check } from 'express-validator'
-
-import checkAPIs from 'express-validator';
-const { check } = checkAPIs;
+import { check } from 'express-validator'
 
 router.route('/AllPost').get(passport.authenticate('jwt',{session:false}),postController.AllPost)
 router.route('/AddPost').post(passport.authenticate('jwt',{session:false}),[

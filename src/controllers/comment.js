@@ -3,10 +3,7 @@
 import Comment from "../models/commentSchema.js";
 import mongoose from "mongoose";
 import Post from "../models/postSchema.js";
-//import { validationResult } from 'express-validator'
-
-import checkAPIs from 'express-validator';
-const { validationResult } = checkAPIs;
+import { validationResult } from 'express-validator'
 
 export const AllComment = (req,res) => {
   Comment

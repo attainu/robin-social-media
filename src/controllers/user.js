@@ -2,9 +2,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-//import { validationResult } from 'express-validator'
-import checkAPIs from 'express-validator';
-const { validationResult } = checkAPIs;
+import { validationResult } from 'express-validator'
 
 
 
