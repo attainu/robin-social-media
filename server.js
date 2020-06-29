@@ -20,7 +20,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 const port = process.env.PORT || 5000
 
-/*
+
 //app settings
 app.set('views', path.join(__dirname, './src/views'))
     .set('view engine', 'hbs')
@@ -33,20 +33,6 @@ app.engine('hbs', exphbs({
     layoutsDir: app.get('views')
 }));
 app.use(express.static(path.join(__dirname, './src/public')));
-*/
-
-
-// view engine setup
-app.engine('.hbs', exphbs({defaultLayout: 'layout', extname: '.hbs'}));
-app.set('view engine', '.hbs');
-
-
-
-
-
-
-
-
 
 //Setup Http-Logger Middleare
 app.use(morgan('dev'));
