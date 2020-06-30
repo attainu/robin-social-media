@@ -2,6 +2,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { validationResult } from 'express-validator'
 
 //Import User Model
 import User from "../models/userSchema.js";
@@ -36,6 +37,14 @@ export const AllUser = (req,res) => {
 //Users Registration
 export const register =  (req,res) => {
 
+      const errors = validationResult(req);
+    console.log(req.body);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).jsonp(errors.array());
+    } else {
+
+
       //make sure that user not exist already in database
       User.find({email:req.body.email}).exec().then(user => {
         if(user.length >= 1){
@@ -69,7 +78,7 @@ export const register =  (req,res) => {
       console.log(err);
       res.status(500).json({error:err});
   });
-
+};
 };
 
 //Users Login
