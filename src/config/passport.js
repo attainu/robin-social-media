@@ -3,13 +3,10 @@ import passportJWT from "passport-jwt";
 const JWTStrategy   = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
 
-
 //Import User Model
 import User from "../models/userSchema.js";
-import dotenv from 'dotenv';
-dotenv.config();
 
-const JWT_KEY = process.env.JWT_KEY;
+const JWT_KEY = "deepambahre@gmail.com";
 
 export default (passport) => {
   let opts = {};
