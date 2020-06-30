@@ -3,7 +3,6 @@
 import Comment from "../models/commentSchema.js";
 import mongoose from "mongoose";
 import Post from "../models/postSchema.js";
-import { validationResult } from 'express-validator'
 
 export const AllComment = (req,res) => {
   Comment
@@ -27,14 +26,6 @@ export const AllComment = (req,res) => {
 
   export const AddComment = (req,res) => {
 
-    const errors = validationResult(req);
-    console.log(req.body);
-
-    if (!errors.isEmpty()) {
-      return res.status(422).jsonp(errors.array());
-    } else {
-
-
       Post.findById(req.params.PostId)
       .then(post => {
           if(!post) {
@@ -43,8 +34,6 @@ export const AllComment = (req,res) => {
               });
           }
           else{
-
-
 
     Comment
     .findOne({ opinion: req.body.opinion })
@@ -65,20 +54,13 @@ export const AllComment = (req,res) => {
           });
         });
 
-
-
-
       }
     }).catch(err => {
       return res.status(500).json({
         error: err.message
       });
     });
-
-      };
-
     };
-
 
   export const updateComment = (req,res) => {
     Comment.findByIdAndUpdate(req.params.id, req.body, function (err, comment) {
@@ -122,14 +104,3 @@ export const AllComment = (req,res) => {
       });
     });
   }
-
-
-
-
-  
-        
-
-
-
-
-      
