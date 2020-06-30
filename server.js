@@ -7,6 +7,7 @@ import passport from "passport";
 import cors from "cors";
 const app = express();
 import path from 'path';
+const __dirname = path.resolve();
 //Import Passport Config
 import passportConfig from "./src/config/passport.js";
 //Import Routes
