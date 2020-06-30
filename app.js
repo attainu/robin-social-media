@@ -7,6 +7,8 @@ const upload = require('express-fileupload');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
+//const dotenv = require('dotenv')
+//dotenv.config('./config/database');
 require ('./config/database');
 
 const app = express();
