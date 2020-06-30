@@ -1,42 +1,56 @@
 {
-  "name": "social-post",
+  "name": "social-media",
   "version": "1.0.0",
   "engines": {
     "node": "12.x",
     "npm": "6.x"
   },
   "type": "module",
-  "description": "Social Post",
-  "main": "app.js",
+  "description": "Social Media Project",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "test": "jest",
+    "start": "babel-watch server",
+    "watch:dev": "nodemon --exec babel-node server"
   },
   "keywords": [
-    "Social Post"
+    "social-media"
   ],
-  "author": "Deepam bahre",
+  "author": "Deepam Bahre",
   "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/node": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-watch": "^7.0.0",
+    "eslint": "^7.3.0",
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.4",
+    "regenerator-runtime": "^0.13.5",
+    "rimraf": "^3.0.2",
+    "supertest": "^4.0.2"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "connect-flash": "^0.1.1",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-fileupload": "^1.1.6",
-    "express-handlebars": "^3.1.0",
-    "express-session": "^1.17.0",
-    "express-validator": "^6.5.0",
+    "express-es6-template-engine": "^2.2.3",
+    "express-handlebars": "^4.0.4",
+    "express-layout": "^0.1.0",
+    "express-validator": "^6.6.0",
     "heroku": "^7.42.1",
-    "method-override": "^3.0.0",
-    "moment": "^2.24.0",
-    "mongoose": "^5.9.1",
-    "mongoose-url-slugs": "^1.0.2",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
+    "http-errors": "^1.7.3",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.3",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
     "validator": "^13.1.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.4"
   }
 }

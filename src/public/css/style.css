@@ -1,0 +1,57 @@
+.flex-grow-1 {
+    justify-content: center;
+}
+.navbar-dark .navbar-brand {
+    font-size: 2rem;
+}
+.router
+{
+    margin: 2rem 0rem;
+    text-align: center;
+}
+.route-info p span
+{
+    margin-right: 1rem;
+}
+.route-info p a {
+    text-decoration: none;
+}
+
+/*----footer-------*/
+
+.bg-Dark {
+ background: #343a40;
+}
+.color-white
+{
+ color: #fff;
+}
+.color-white a
+{
+ color: #fff !important; 
+}
+.social-footer-icon li a i
+{
+ font-size: 1.5rem;
+ color:#fff;
+ border-radius: 50%;
+ width: 3rem;
+ height: 3rem;
+ text-align: center;
+ line-height: 3rem;
+}
+.twitter{
+    background-color: #55acee;
+}
+.facebook{
+    background-color: #3b5999;
+}
+.instagram{
+    background-color: #e4405f;
+}
+.pinterest{
+    background-color: #bd081c;
+}
+.vimeo{
+    background-color: #1ab7ea;
+}
