@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from "express";
 import morgan from "morgan";
 import bodyParser from "body-parser";
@@ -17,8 +19,6 @@ import postRoute from "./src/routes/post.js";
 import commentRoute from "./src/routes/comment.js";
 //Import MongoDB Connection
 import "./src/config/database.js";
-import dotenv from 'dotenv';
-dotenv.config();
 const port = process.env.PORT || 5000
 
 
