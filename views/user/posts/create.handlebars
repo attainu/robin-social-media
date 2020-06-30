@@ -1,0 +1,87 @@
+<div class="row block-center block-height-space">
+<div class="col-md-6 col-md-offset-3">
+<h1>Create Post</h1>
+
+{{#each errors}}
+    <div class="alert alert-danger">
+        {{message}}
+    </div>
+{{/each}}
+
+<form
+    action="/user/posts/create"
+    method="post"
+    enctype="multipart/form-data"
+>
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input
+            name="title"
+            type="text"
+            class="form-control"
+            id="title"
+            placeholder="Enter title"
+            required
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="file">File</label>
+        <input name="file" type="file" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="category">Category</label>
+        <select
+            name="category"
+            class="form-control"
+            id="category"
+        >
+            <option value="Please add categories first"> Please add categories first</option>
+            {{#each categories}}
+                <option value="{{_id}}">{{name}}</option>
+            {{/each}}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select
+            name="status"
+            class="form-control"
+            id="status"
+        >
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+            <option value="draft">Draft</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="allowComments" class="form-check-label">
+            <input
+                name="allowComments"
+                type="checkbox"
+                class="form-check-input"
+                id="allowComments"
+            >
+            Allow Comments
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label for="body">Body</label>
+        <textarea
+            name="body"
+            class="form-control"
+            id="body"
+            placeholder="Enter description"
+            cols="30"
+            rows="10"
+            required
+        ></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Post</button>
+</form>
+</div>
+</div>

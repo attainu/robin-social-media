@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Social Post</title>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="/css/social-home.css" rel="stylesheet">
+
+        <!-- Custom styles for a single post -->
+        <link href="/css/social-post.css" rel="stylesheet">
+        
+        <link href="/css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Navigation -->
+        {{> home-nav}}
+
+        <!-- Page Content -->
+        <div class="container">
+            {{#if errors}}
+                {{#each errors}}
+                <div class="alert alert-danger">{{message}}</div>
+                {{/each}}
+            {{/if}}
+
+            {{> form-messages}}
+            {{{body}}}
+        </div>
+
+        <!-- Footer -->
+        {{> footer}}
+
+        <!-- jQuery library -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <!-- Latest compiled JavaScript -->
+   <!-- Popper JS -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </body>
+
+</html>
